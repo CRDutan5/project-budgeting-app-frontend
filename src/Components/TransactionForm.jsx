@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TransactionForm = () => {
-  // item_name
-  // amount
-  // date
-  // from
-  // category
-  // transactionType
+  const [userInput, setUserInput] = useState({
+    item_name: "",
+    amount: null,
+    date: "",
+    from: "",
+    category: "",
+    transactionType: "",
+  });
+
+  const handleChange = (e) => {
+    if (e.target.id === "amount") {
+      setUserInput({ ...userInput, [e.target.id]: +e.target.value });
+    }
+  };
+
   return (
     <div className="flex justify-center items-center h-screen">
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2 h-5/6">
@@ -27,7 +36,8 @@ const TransactionForm = () => {
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary"
               id="item_name"
               type="text"
-              value=""
+              value={userInput.item_name}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -45,8 +55,8 @@ const TransactionForm = () => {
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary"
               id="amount"
               type="number"
-              //   ADD THE USERINPUT VAL HERE START WITH 0
-              value=""
+              value={userInput.amount}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -63,13 +73,12 @@ const TransactionForm = () => {
             <input
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary"
               id="date"
-              //   REMEMBER TO DESTRCTURE AND CONVERT THE DATE RECEIVED
               type="date"
-              value=""
+              value={userInput.date}
+              onChange={handleChange}
             />
           </div>
         </div>
-
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label
@@ -84,11 +93,11 @@ const TransactionForm = () => {
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary"
               id="from"
               type="text"
-              value=""
+              value={userInput.from}
+              onChange={handleChange}
             />
           </div>
         </div>
-
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label
@@ -105,6 +114,8 @@ const TransactionForm = () => {
               focus:outline-none focus:bg-white focus:border-primary"
               name="category"
               id="category"
+              value={userInput.category}
+              onChange={handleChange}
             >
               <option value="">Please Choose an Option</option>
               <option value="Income">Income</option>
@@ -133,7 +144,9 @@ const TransactionForm = () => {
                   type="radio"
                   id="withdrawal"
                   name="transactionType"
-                  value=""
+                  value="withdrawal"
+                  checked={(userInput.transactionType = "withdrawal")}
+                  //   onChange={handleChange}
                 />
                 <label htmlFor="withdrawal">Withdrawal</label>
               </div>
@@ -142,7 +155,9 @@ const TransactionForm = () => {
                   type="radio"
                   id="deposit"
                   name="transactionType"
-                  value=""
+                  value="deposit"
+                  checked={(userInput.transactionType = "deposit")}
+                  //   onChange={handleChange}
                 />
                 <label htmlFor="deposit">Deposit</label>
               </div>
