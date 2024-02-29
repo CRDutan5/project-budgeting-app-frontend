@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const TransactionShow = () => {
+const TransactionShow = ({ setTransactions }) => {
   const [targetTransaction, setTargetTransaction] = useState([]);
 
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  function handleDelete() {
+    const options = {
+      method: "DELETE",
+    };
+    fetch(`http://localhost:3333/transactions/${id}`, options)
+      .then((res) => res.json())
+      .then((data) => setTransactions(data.transactions))
+      .then(() => navigate("/home"));
+  }
 
   useEffect(() => {
     fetch(`http://localhost:3333/transactions/${id}`)
@@ -21,7 +32,7 @@ const TransactionShow = () => {
         <div className="flex justify-center text-4xl">
           <h1>${amount}</h1>
         </div>
-        <div className="text-2xl">
+        <div className="text-xl">
           <div className="grid grid-cols-2 row-auto">
             <div>
               <p className="flex justify-center">Name: </p>
@@ -39,7 +50,10 @@ const TransactionShow = () => {
             </div>
           </div>
           <div className="flex justify-center py-20">
-            <button className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl">
+            <button
+              onClick={handleDelete}
+              className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl"
+            >
               Delete
             </button>
             <button className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl">

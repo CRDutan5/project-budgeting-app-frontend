@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Nav from "./Components/Nav";
 import TransactionsIndex from "./Components/TransactionsIndex";
 import TransactionShow from "./Components/TransactionShow";
+import TransactionForm from "./Components/TransactionForm";
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
@@ -28,7 +29,11 @@ const App = () => {
             />
           }
         />
-        <Route path="/home/show/:id" element={<TransactionShow />} />
+        <Route
+          path="/home/show/:id"
+          element={<TransactionShow setTransactions={setTransactions} />}
+        />
+        <Route path="/home/new" element={<TransactionForm />} />
       </Routes>
     </div>
   );
