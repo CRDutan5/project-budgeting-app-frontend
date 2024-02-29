@@ -8,8 +8,11 @@ const TransactionForm = () => {
   // category
   // transactionType
   return (
-    <div className="w-full max-w-md">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="flex justify-center items-center h-screen">
+      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2 h-5/6">
+        <h1 className="flex justify-center font-bold text-2xl py-5">
+          Create a Transaction
+        </h1>
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label
@@ -145,6 +148,11 @@ const TransactionForm = () => {
               </div>
             </fieldset>
           </div>
+        </div>
+        <div className="flex justify-center">
+          <button className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl text-xl my-5">
+            Submit
+          </button>
         </div>
       </form>
     </div>
