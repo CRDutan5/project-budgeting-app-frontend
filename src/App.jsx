@@ -1,7 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Nav from "./Components/Nav";
+import TransactionsIndex from "./Components/TransactionsIndex";
+import TransactionShow from "./Components/TransactionShow";
 
 const App = () => {
-  return <div>Budgeting App</div>
-}
+  const [transactions, setTransactions] = useState([]);
+  const [total, setTotal] = useState(0);
 
-export default App
+  useEffect(() => {
+    fetch(`http://localhost:3333/transactions`)
+      .then((res) => res.json())
+      .then((data) => setTransactions(data.transactions));
+  }, [transactions]);
+
+  return (
+    <div className=" min-h-screen bg-secondary">
+      <Nav />
+      <Routes>
+        <Route
+          path="/home"
+          element={
+            <TransactionsIndex
+              transactions={transactions}
+              total={total}
+              setTotal={setTotal}
+            />
+          }
+        />
+        <Route path="/home/show/:id" element={<TransactionShow />} />
+      </Routes>
+    </div>
+  );
+};
+
+export default App;
