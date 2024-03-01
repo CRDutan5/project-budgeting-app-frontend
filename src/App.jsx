@@ -42,6 +42,7 @@ const App = () => {
             />
           }
         />
+        <Route path="/home/edit/:id" element={<TransactionForm />} />
       </Routes>
     </div>
   );

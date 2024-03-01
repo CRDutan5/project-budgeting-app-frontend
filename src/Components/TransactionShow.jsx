@@ -52,14 +52,18 @@ const TransactionShow = ({ setTransactions }) => {
             >
               Delete
             </button>
-            <button className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl">
-              Edit
-            </button>
+            <Link to={`/home/edit/${id}`}>
+              <button className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl">
+                Edit
+              </button>
+            </Link>
           </div>
           <div className="flex justify-center">
-            <button className="px-10 my-4 border-primary bg-secondary border-4 rounded-xl">
-              <Link to={"/home"}>Back to Home</Link>
-            </button>
+            <Link to={"/home"}>
+              <button className="px-10 my-4 border-primary bg-secondary border-4 rounded-xl">
+                Back to Home
+              </button>
+            </Link>
           </div>
         </div>
       </div>

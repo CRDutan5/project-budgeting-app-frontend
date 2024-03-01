@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const TransactionForm = ({ setTransactions, transactions }) => {
   const [userInput, setUserInput] = useState({
@@ -11,6 +11,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
     transactionType: "",
   });
 
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -37,6 +38,14 @@ const TransactionForm = ({ setTransactions, transactions }) => {
         navigate(`/home/show/${transactions[transactions.length - 1].id + 1}`)
       );
   }
+
+  useEffect(() => {
+    if (id) {
+      fetch(`http://localhost:3333/transactions/${id}`)
+        .then((res) => res.json())
+        .then((data) => setUserInput(data.transaction));
+    }
+  }, [id]);
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -101,6 +110,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
               type="date"
               value={userInput.date}
               onChange={handleChange}
+              checked={userInput.transactionType}
             />
           </div>
         </div>
@@ -120,6 +130,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
               type="text"
               value={userInput.from}
               onChange={handleChange}
+              checked={userInput.transactionType}
             />
           </div>
         </div>
@@ -169,7 +180,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
                   type="radio"
                   id="withdrawal"
                   name="transactionType"
-                  value={userInput.transactionType}
+                  checked={userInput.transactionType === "withdrawal"}
                   onChange={handleChange}
                 />
                 <label htmlFor="withdrawal">Withdrawal</label>
@@ -179,7 +190,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
                   type="radio"
                   id="deposit"
                   name="transactionType"
-                  value={userInput.transactionType}
+                  checked={userInput.transactionType === "deposit"}
                   onChange={handleChange}
                 />
                 <label htmlFor="deposit">Deposit</label>
