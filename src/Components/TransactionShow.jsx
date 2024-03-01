@@ -30,26 +30,21 @@ const TransactionShow = ({ setTransactions }) => {
     <div className="flex justify-center items-center h-screen">
       <div className="bg-gray-100 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-100 border border-gray-100 p-8 w-1/2 h-3/5">
         <div className="flex justify-center text-4xl">
-          <h1>${amount}</h1>
+          <h1>
+            {transactionType === "withdrawal" ? `$-${amount}` : `+$${amount}`}
+          </h1>
         </div>
         <div className="text-xl">
-          <div className="grid grid-cols-2 row-auto">
-            <div>
-              <p className="flex justify-center">Name: </p>
-              <p className="flex justify-center">Date: </p>
-              <p className="flex justify-center">From: </p>
-              <p className="flex justify-center">Category: </p>
-              <p className="flex justify-center">Transaction Type: </p>
-            </div>
-            <div>
-              <p className="flex justify-center">{item_name}</p>
-              <p className="flex justify-center">{date}</p>
-              <p className="flex justify-center">{from}</p>
-              <p className="flex justify-center">{category}</p>
-              <p className="flex justify-center">{transactionType}</p>
-            </div>
+          <div className="grid grid-cols-1 row-auto py-8">
+            <p className="flex justify-center p-2">Name: {item_name}</p>
+            <p className="flex justify-center p-2">Date: {date}</p>
+            <p className="flex justify-center p-2">From: {from}</p>
+            <p className="flex justify-center p-2">Category: {category}</p>
+            <p className="flex justify-center p-2">
+              Transaction Type: {transactionType}
+            </p>
           </div>
-          <div className="flex justify-center py-20">
+          <div className="flex justify-center py-2">
             <button
               onClick={handleDelete}
               className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl"

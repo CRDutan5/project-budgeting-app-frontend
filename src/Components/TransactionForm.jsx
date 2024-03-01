@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const TransactionForm = ({ setTransactions }) => {
+const TransactionForm = ({ setTransactions, transactions }) => {
   const [userInput, setUserInput] = useState({
     item_name: "",
     amount: 0,
@@ -32,9 +32,10 @@ const TransactionForm = ({ setTransactions }) => {
     };
     fetch(`http://localhost:3333/transactions`, options)
       .then((res) => res.json())
-      .then((data) => setTransactions(data.transactions));
-
-    navigate("/home");
+      .then((data) => setTransactions(data.transactions))
+      .then(() =>
+        navigate(`/home/show/${transactions[transactions.length - 1].id + 1}`)
+      );
   }
 
   return (

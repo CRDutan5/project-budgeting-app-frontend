@@ -35,7 +35,12 @@ const App = () => {
         />
         <Route
           path="/home/new"
-          element={<TransactionForm setTransactions={setTransactions} />}
+          element={
+            <TransactionForm
+              setTransactions={setTransactions}
+              transactions={transactions}
+            />
+          }
         />
       </Routes>
     </div>
