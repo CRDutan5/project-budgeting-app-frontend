@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const TransactionShow = ({ setTransactions }) => {
   const [targetTransaction, setTargetTransaction] = useState([]);
@@ -35,7 +36,7 @@ const TransactionShow = ({ setTransactions }) => {
           </h1>
         </div>
         <div className="text-xl">
-          <div className="grid grid-cols-1 row-auto py-8">
+          <div className="grid grid-cols-1 row-auto py-5">
             <p className="flex justify-center p-2">Name: {item_name}</p>
             <p className="flex justify-center p-2">Date: {date}</p>
             <p className="flex justify-center p-2">From: {from}</p>
@@ -53,6 +54,11 @@ const TransactionShow = ({ setTransactions }) => {
             </button>
             <button className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl">
               Edit
+            </button>
+          </div>
+          <div className="flex justify-center">
+            <button className="px-10 my-4 border-primary bg-secondary border-4 rounded-xl">
+              <Link to={"/home"}>Back to Home</Link>
             </button>
           </div>
         </div>
