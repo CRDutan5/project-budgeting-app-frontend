@@ -1,24 +1,48 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const TransactionForm = () => {
+const TransactionForm = ({ setTransactions }) => {
   const [userInput, setUserInput] = useState({
     item_name: "",
-    amount: null,
+    amount: 0,
     date: "",
     from: "",
     category: "",
     transactionType: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     if (e.target.id === "amount") {
       setUserInput({ ...userInput, [e.target.id]: +e.target.value });
+    } else if (e.target.id === "deposit" || e.target.id === "withdrawal") {
+      setUserInput({ ...userInput, transactionType: e.target.id });
+    } else {
+      setUserInput({ ...userInput, [e.target.id]: e.target.value });
     }
   };
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userInput),
+    };
+    fetch(`http://localhost:3333/transactions`, options)
+      .then((res) => res.json())
+      .then((data) => setTransactions(data.transactions));
+
+    navigate("/home");
+  }
+
   return (
     <div className="flex justify-center items-center h-screen">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2 h-5/6">
+      <form
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2 h-5/6"
+        onSubmit={handleSubmit}
+      >
         <h1 className="flex justify-center font-bold text-2xl py-5">
           Create a Transaction
         </h1>
@@ -130,12 +154,12 @@ const TransactionForm = () => {
         </div>
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
-            <label
+            <legend
               className="block font-bold md:text-right mb-1 md:mb-0 pr-4"
               htmlFor="transactionType"
             >
               Transaction Type
-            </label>
+            </legend>
           </div>
           <div className="md:w-2/3">
             <fieldset>
@@ -144,9 +168,8 @@ const TransactionForm = () => {
                   type="radio"
                   id="withdrawal"
                   name="transactionType"
-                  value="withdrawal"
-                  checked={(userInput.transactionType = "withdrawal")}
-                  //   onChange={handleChange}
+                  value={userInput.transactionType}
+                  onChange={handleChange}
                 />
                 <label htmlFor="withdrawal">Withdrawal</label>
               </div>
@@ -155,9 +178,8 @@ const TransactionForm = () => {
                   type="radio"
                   id="deposit"
                   name="transactionType"
-                  value="deposit"
-                  checked={(userInput.transactionType = "deposit")}
-                  //   onChange={handleChange}
+                  value={userInput.transactionType}
+                  onChange={handleChange}
                 />
                 <label htmlFor="deposit">Deposit</label>
               </div>

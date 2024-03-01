@@ -33,7 +33,10 @@ const App = () => {
           path="/home/show/:id"
           element={<TransactionShow setTransactions={setTransactions} />}
         />
-        <Route path="/home/new" element={<TransactionForm />} />
+        <Route
+          path="/home/new"
+          element={<TransactionForm setTransactions={setTransactions} />}
+        />
       </Routes>
     </div>
   );
