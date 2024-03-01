@@ -26,17 +26,32 @@ const TransactionForm = ({ setTransactions, transactions }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userInput),
-    };
-    fetch(`http://localhost:3333/transactions`, options)
-      .then((res) => res.json())
-      .then((data) => setTransactions(data.transactions))
-      .then(() =>
-        navigate(`/home/show/${transactions[transactions.length - 1].id + 1}`)
-      );
+
+    if (id) {
+      const options = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userInput),
+      };
+      fetch(`http://localhost:3333/transactions/${id}`, options)
+        .then((res) => res.json())
+        .then((data) => {
+          setTransactions(data.transactions);
+          navigate(`/home/show/${id}`);
+        });
+    } else {
+      const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userInput),
+      };
+      fetch(`http://localhost:3333/transactions`, options)
+        .then((res) => res.json())
+        .then((data) => setTransactions(data.transactions))
+        .then(() =>
+          navigate(`/home/show/${transactions[transactions.length - 1].id + 1}`)
+        );
+    }
   }
 
   useEffect(() => {
@@ -54,7 +69,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
         onSubmit={handleSubmit}
       >
         <h1 className="flex justify-center font-bold text-2xl py-5">
-          Create a Transaction
+          {id ? "Edit Transaction" : "Create a Transaction"}
         </h1>
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
@@ -200,7 +215,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
         </div>
         <div className="flex justify-center">
           <button className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl text-xl my-5">
-            Submit
+            {id ? "Submit Changes" : "Submit"}
           </button>
         </div>
       </form>

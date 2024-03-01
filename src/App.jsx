@@ -16,7 +16,7 @@ const App = () => {
   }, [transactions]);
 
   return (
-    <div className=" min-h-screen bg-secondary">
+    <div className=" min-h-screen bg-white">
       <Nav />
       <Routes>
         <Route
@@ -42,7 +42,10 @@ const App = () => {
             />
           }
         />
-        <Route path="/home/edit/:id" element={<TransactionForm />} />
+        <Route
+          path="/home/edit/:id"
+          element={<TransactionForm setTransactions={setTransactions} />}
+        />
       </Routes>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { capitalizedWord, dateToString } from "../helper";
 
 const TransactionShow = ({ setTransactions }) => {
   const [targetTransaction, setTargetTransaction] = useState([]);
@@ -28,8 +29,12 @@ const TransactionShow = ({ setTransactions }) => {
     targetTransaction;
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="bg-gray-100 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-100 border border-gray-100 p-8 w-1/2 h-3/5">
+    <div className="bg-indigo-300 flex justify-center items-center h-screen">
+      <div
+        className={`${
+          transactionType === "deposit" ? "bg-green-200" : "bg-red-200"
+        } rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-100 border-4 border-indigo-600 p-8 w-1/2 h-3/5`}
+      >
         <div className="flex justify-center text-4xl">
           <h1>
             {transactionType === "withdrawal" ? `$-${amount}` : `+$${amount}`}
@@ -38,29 +43,32 @@ const TransactionShow = ({ setTransactions }) => {
         <div className="text-xl">
           <div className="grid grid-cols-1 row-auto py-5">
             <p className="flex justify-center p-2">Name: {item_name}</p>
-            <p className="flex justify-center p-2">Date: {date}</p>
+            <p className="flex justify-center p-2">
+              Date: {date && dateToString(date)}
+            </p>
             <p className="flex justify-center p-2">From: {from}</p>
             <p className="flex justify-center p-2">Category: {category}</p>
             <p className="flex justify-center p-2">
-              Transaction Type: {transactionType}
+              Transaction Type:{" "}
+              {transactionType ? capitalizedWord(transactionType) : ""}
             </p>
           </div>
           <div className="flex justify-center py-2">
             <button
               onClick={handleDelete}
-              className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl"
+              className="mx-10 px-10 border-indigo-600 bg-indigo-200 border-4 rounded-xl hover:bg-white"
             >
               Delete
             </button>
             <Link to={`/home/edit/${id}`}>
-              <button className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl">
+              <button className="mx-10 px-10 border-indigo-600 bg-indigo-200 border-4 rounded-xl hover:bg-white">
                 Edit
               </button>
             </Link>
           </div>
           <div className="flex justify-center">
             <Link to={"/home"}>
-              <button className="px-10 my-4 border-primary bg-secondary border-4 rounded-xl">
+              <button className="px-10 my-4 border-indigo-600 bg-indigo-200 border-4 rounded-xl hover:bg-white">
                 Back to Home
               </button>
             </Link>
