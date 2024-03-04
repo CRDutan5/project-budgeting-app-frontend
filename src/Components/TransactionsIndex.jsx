@@ -39,11 +39,8 @@ const TransactionsIndex = ({ transactions, total, setTotal }) => {
       <div className="grid auto-rows-auto px-40 bg-white mx-40 p-10 rounded-3xl border-4 border-indigo-600 ">
         <h1 className="text-3xl flex justify-center p-4">Transactions</h1>
         {transactions.map((transaction) => (
-          <Link to={`/home/show/${transaction.id}`}>
-            <div
-              key={transaction.id}
-              className="flex justify-between text-xl border-b-4 border-indigo-200 p-3 hover:bg-indigo-200"
-            >
+          <Link to={`/home/show/${transaction.id}`} key={transaction.id}>
+            <div className="flex justify-between text-xl border-b-4 border-indigo-200 p-3 hover:bg-indigo-200">
               <p className="w-1/3 text-center">
                 {dateToString(transaction.date)}
               </p>

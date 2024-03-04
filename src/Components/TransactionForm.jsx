@@ -63,9 +63,9 @@ const TransactionForm = ({ setTransactions, transactions }) => {
   }, [id]);
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen bg-indigo-200 ">
       <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2 h-5/6"
+        className="bg-white shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4 w-1/2 h-5/6 border-4 border-indigo-600"
         onSubmit={handleSubmit}
       >
         <h1 className="flex justify-center font-bold text-2xl py-5">
@@ -82,7 +82,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
           </div>
           <div className="md:w-2/3">
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary"
+              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600"
               id="item_name"
               type="text"
               value={userInput.item_name}
@@ -101,7 +101,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
           </div>
           <div className="md:w-2/3">
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary"
+              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600"
               id="amount"
               type="number"
               value={userInput.amount}
@@ -120,7 +120,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
           </div>
           <div className="md:w-2/3">
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary"
+              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600"
               id="date"
               type="date"
               value={userInput.date}
@@ -140,7 +140,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
           </div>
           <div className="md:w-2/3">
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary"
+              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600"
               id="from"
               type="text"
               value={userInput.from}
@@ -162,7 +162,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
             <select
               className="bg-gray-200 appearance-none border-2 border-gray-200
               rounded w-full py-2 px-4 text-gray-700 leading-tight
-              focus:outline-none focus:bg-white focus:border-primary"
+              focus:outline-none focus:bg-white focus:border-indigo-600"
               name="category"
               id="category"
               value={userInput.category}
@@ -214,7 +214,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
           </div>
         </div>
         <div className="flex justify-center">
-          <button className="mx-10 px-10 border-primary bg-secondary border-4 rounded-xl text-xl my-5">
+          <button className="px-10 border-indigo-600 bg-indigo-200 border-4 rounded-xl hover:bg-white text-xl">
             {id ? "Submit Changes" : "Submit"}
           </button>
         </div>
