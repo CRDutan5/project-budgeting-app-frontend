@@ -16,7 +16,7 @@ const App = () => {
     fetch(`http://localhost:3333/transactions`)
       .then((res) => res.json())
       .then((data) => setTransactions(data.transactions));
-  }, [transactions]);
+  }, []);
 
   return (
     <div className=" min-h-screen bg-white">
@@ -32,17 +32,6 @@ const App = () => {
                 setTotal={setTotal}
               />
               <DoughnutChart transactions={transactions} />
-              {/* <Bar
-                data={{
-                  labels: ["A", "B", "C"],
-                  datasets: [
-                    {
-                      label: "Revenue",
-                      data: [200, 300, 400],
-                    },
-                  ],
-                }}
-              /> */}
             </div>
           }
         />
