@@ -2,6 +2,7 @@ import { Doughnut } from "react-chartjs-2";
 import React from "react";
 
 const DoughnutChart = ({ transactions }) => {
+  // WITHDRAWALS
   const withdrawalTransactions = transactions.filter(
     (transaction) => transaction.transactionType === "withdrawal"
   );
@@ -10,6 +11,19 @@ const DoughnutChart = ({ transactions }) => {
     (transaction) => transaction.item_name
   );
   const amounts = withdrawalTransactions.map(
+    (transaction) => transaction.amount
+  );
+
+  //   DEPOSITS
+  const depositTransactions = transactions.filter(
+    (transaction) => transaction.transactionType === "deposit"
+  );
+
+  const depositLabels = depositTransactions.map(
+    (transaction) => transaction.item_name
+  );
+
+  const depositAmounts = depositTransactions.map(
     (transaction) => transaction.amount
   );
 
@@ -41,11 +55,11 @@ const DoughnutChart = ({ transactions }) => {
 
             <Doughnut
               data={{
-                labels: labels,
+                labels: depositLabels,
                 datasets: [
                   {
                     label: "Amount",
-                    data: amounts,
+                    data: depositAmounts,
                     backgroundColor: [
                       "rgb(255, 99, 132)",
                       "rgb(54, 162, 235)",
