@@ -4,6 +4,9 @@ import Nav from "./Components/Nav";
 import TransactionsIndex from "./Components/TransactionsIndex";
 import TransactionShow from "./Components/TransactionShow";
 import TransactionForm from "./Components/TransactionForm";
+import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS } from "chart.js/auto";
+import DoughnutChart from "./Components/DoughnutChart";
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
@@ -22,11 +25,25 @@ const App = () => {
         <Route
           path="/home"
           element={
-            <TransactionsIndex
-              transactions={transactions}
-              total={total}
-              setTotal={setTotal}
-            />
+            <div>
+              <TransactionsIndex
+                transactions={transactions}
+                total={total}
+                setTotal={setTotal}
+              />
+              <DoughnutChart transactions={transactions} />
+              {/* <Bar
+                data={{
+                  labels: ["A", "B", "C"],
+                  datasets: [
+                    {
+                      label: "Revenue",
+                      data: [200, 300, 400],
+                    },
+                  ],
+                }}
+              /> */}
+            </div>
           }
         />
         <Route

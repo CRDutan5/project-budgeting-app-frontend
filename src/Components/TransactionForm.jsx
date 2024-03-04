@@ -68,13 +68,13 @@ const TransactionForm = ({ setTransactions, transactions }) => {
         className="bg-white shadow-md rounded-3xl px-8 pt-6 pb-8 mb-4 w-1/2 h-5/6 border-4 border-indigo-600"
         onSubmit={handleSubmit}
       >
-        <h1 className="flex justify-center font-bold text-2xl py-5">
+        <h1 className="flex justify-center  text-3xl py-8">
           {id ? "Edit Transaction" : "Create a Transaction"}
         </h1>
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label
-              className="block font-bold md:text-right mb-1 md:mb-0 pr-4"
+              className="block  md:text-right mb-1 md:mb-0 pr-4"
               htmlFor="item_name"
             >
               Item Name
@@ -93,7 +93,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label
-              className="block font-bold md:text-right mb-1 md:mb-0 pr-4"
+              className="block  md:text-right mb-1 md:mb-0 pr-4"
               htmlFor="amount"
             >
               Amount
@@ -112,7 +112,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label
-              className="block font-bold md:text-right mb-1 md:mb-0 pr-4"
+              className="block  md:text-right mb-1 md:mb-0 pr-4"
               htmlFor="date"
             >
               Date
@@ -132,7 +132,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label
-              className="block font-bold md:text-right mb-1 md:mb-0 pr-4"
+              className="block  md:text-right mb-1 md:mb-0 pr-4"
               htmlFor="from"
             >
               From
@@ -152,7 +152,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <label
-              className="block font-bold md:text-right mb-1 md:mb-0 pr-4"
+              className="block  md:text-right mb-1 md:mb-0 pr-4"
               htmlFor="category"
             >
               Category
@@ -182,7 +182,7 @@ const TransactionForm = ({ setTransactions, transactions }) => {
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
             <legend
-              className="block font-bold md:text-right mb-1 md:mb-0 pr-4"
+              className="block  md:text-right mb-1 md:mb-0 pr-4"
               htmlFor="transactionType"
             >
               Transaction Type
